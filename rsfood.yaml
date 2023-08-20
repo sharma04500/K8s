@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rsfood
+  labels:
+    app: food
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+    - {key: app, operator: In, values: [food, apache2]}
+  template:
+    metadata:
+      labels:
+        app: food
+        server: apache
+    spec:
+      volumes:
+      - name: webapp
+        hostPath:
+          path: /root/food
+      containers:
+      - name: food
+        image: ubuntu/apache2
+        volumeMounts:
+        - name: webapp
+          mountPath: /var/www/html
+
+
+#############################################################################################################
+#
+# Reference: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+#
+#      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
+# as a root user, in order to clone the repo 'food' into the root directory to make the source code
+# available in the hostPath as specified in the above yaml code.
+#
+#      Port Forwarding can't be done while creating multiple pods using a ReplicationController
+# or ReplicaSet, as only a single pod can be heard on any given unique host port. If port forwording is
+# specified, the first created pod only enters READY mode. The pods created after creation of this pod
+# won't stays back in NOT READY status, as the port is already occupied by the first pod.
+#
+# ####################################################################################################################
