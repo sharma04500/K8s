@@ -15,4 +15,8 @@ spec:
     volumeMounts:
     - name: webdata
       mountPath: /var/www/html
+
+#      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
+# as a root user, in order to clone the repo 'food' into the root directory to make the source code
+# available in the hostPath as specified in the above yaml code.
  
