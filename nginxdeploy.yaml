@@ -37,5 +37,6 @@ spec:
 # where 'n' is the revision number and can be obtained and verified by executing : kubectl rollout history deploy <deployment_name>
 # To fetch the details of a particular revision, execute the same command with the flag, --revision=n ; where n is the no. of revision made.
 #
+# For more INFO : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ 
 ##################################################################################################################################################
 ##################################################################################################################################################
