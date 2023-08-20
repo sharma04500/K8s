@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx 
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:1.19.0
+        command: ["/bin/bash", "-c", "nginx -g 'daemon off;' && while true;do date > /usr/share/nginx/html/index.html; sleep 5; done"]
+
+
+########################################################################################################################################
+########################################################################################################################################
+#
+#    This script is to test the deployment functionality of K8s. This also contains some notes.
+# 
+#  The major commands used in deployment are:
+#
+# To create deployment : kubectl create deploy -f <file/path>
+# To make edits to the deployment : kubectl edit deploy <deployment_name>
+# To check the roll out history : kubectl rollout history deploy <deployment_name>
+# To undo deployment to previous version, i.e., to roll back an update : kubectl rollout undo deploy <deployment_name>
+#       To roll back the deployment, multiple steps backward on the go, i.e., to a particular revision number : 
+# kubectl rollout undo deploy <deployment_name> --to-revision=n 
+# where 'n' is the revision number and can be obtained and verified by executing : kubectl rollout history deploy <deployment_name>
+# To fetch the details of a particular revision, execute the same command with the flag, --revision=n ; where n is the no. of revision made.
+#
+##################################################################################################################################################
+##################################################################################################################################################
