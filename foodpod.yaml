@@ -15,9 +15,9 @@ spec:
     volumeMounts:
     - name: webdata
       mountPath: /var/www/html
-  ports:
-  - containerPort: 80
-    hostPort: 8000
+    ports:
+    - containerPort: 80
+      hostPort: 8000
 
 #      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
 # as a root user, in order to clone the repo 'food' into the root directory to make the source code
