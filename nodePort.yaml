@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ipcluster
+spec:
+  selector:
+    app: food
+  ports:
+  - protocol: TCP
+    port: 80  # Port of the Service i.e., NodePort service, which is being handled by KubeProxy.
+    targetPort: 80  # Port of the container.
+    nodePort: 31999   # Port of the node, on which pod is deployed. This should be opened in Security Group for public access.
+  type: NodePort   # Mention the type of service.
+  
