@@ -10,7 +10,7 @@
 
 # Provide the ip of your system here:
 
-ip=`ip a | grep enp0s3 | tail -1 | awk '{print "" $2}'`
+ip=`ip a | grep enp0s3 | tail -1 | awk '{print substr($2, -3, length($2)-3)}'`
 
 # Enabling debug mode
 
