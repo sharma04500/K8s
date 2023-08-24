@@ -1,14 +1,15 @@
 #!/bin/bash
-
 #####################################################################################
-#      This script is to install kubernetes using kubeadm tool
-# with container D as CRI.
-#
-#      This script contains all the commands and tools which 
-# are needed to complete the installation of Kubernetes v1.28
-#
-# Author: Sharma 
-# E-mail: sarma040500@gmail.com
+#####################################################################################
+##      This script is to install kubernetes using kubeadm tool
+## with container D as CRI.
+##
+##      This script contains all the commands and tools which 
+## are needed to complete the installation of Kubernetes v1.28
+##
+## Author: Sharma 
+## E-mail: sarma040500@gmail.com
+###################################################################################
 ###################################################################################
 
 # Provide the ip of your system here:
