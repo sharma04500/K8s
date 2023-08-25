@@ -22,21 +22,21 @@ spec:
 
 ########################################################################################################################################
 ########################################################################################################################################
-#
-#    This script is to test the deployment functionality of K8s. This also contains some notes. Deployment uses ReplicaSet in the backend
-# to deploy the pods and manages them as per the parameters described.
-# 
-#  The major commands used in deployment are:
-#
-# To create deployment : kubectl create deploy -f <file/path>
-# To make edits to the deployment : kubectl edit deploy <deployment_name>
-# To check the roll out history : kubectl rollout history deploy <deployment_name>
-# To undo deployment to previous version, i.e., to roll back an update : kubectl rollout undo deploy <deployment_name>
-#       To roll back the deployment, multiple steps backward on the go, i.e., to a particular revision number : 
-# kubectl rollout undo deploy <deployment_name> --to-revision=n 
-# where 'n' is the revision number and can be obtained and verified by executing : kubectl rollout history deploy <deployment_name>
-# To fetch the details of a particular revision, execute the same command with the flag, --revision=n ; where n is the no. of revision made.
-#
-# For more INFO : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ 
+##
+##    This script is to test the deployment functionality of K8s. This also contains some notes. Deployment uses ReplicaSet in the backend
+## to deploy the pods and manages them as per the parameters described.
+## 
+##  The major commands used in deployment are:
+##
+## To create deployment : kubectl create deploy -f <file/path>
+## To make edits to the deployment : kubectl edit deploy <deployment_name>
+## To check the roll out history : kubectl rollout history deploy <deployment_name>
+## To undo deployment to previous version, i.e., to roll back an update : kubectl rollout undo deploy <deployment_name>
+##       To roll back the deployment, multiple steps backward on the go, i.e., to a particular revision number : 
+## kubectl rollout undo deploy <deployment_name> --to-revision=n 
+## where 'n' is the revision number and can be obtained and verified by executing : kubectl rollout history deploy <deployment_name>
+## To fetch the details of a particular revision, execute the same command with the flag, --revision=n ; where n is the no. of revision made.
+##
+## For more INFO : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ 
 ##################################################################################################################################################
 ##################################################################################################################################################

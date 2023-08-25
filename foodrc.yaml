@@ -29,14 +29,16 @@ spec:
        #  hostPort: 9999
 
 #############################################################################################################
-#      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
-# as a root user, in order to clone the repo 'food' into the root directory to make the source code
-# available in the hostPath as specified in the above yaml code.
-#
-#      Port Forwarding can't be done while creating multiple pods using a ReplicationController
-# or ReplicaSet, as only a single pod can be heard on any given unique host port. If port forwording is 
-# specified, the first created pod only enters READY mode. The pods created after creation of this pod
-# won't stays back in NOT READY status, as the port is already occupied by the first pod.
-# For more INFO: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
-#
+#############################################################################################################
+##      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
+## as a root user, in order to clone the repo 'food' into the root directory to make the source code
+## available in the hostPath as specified in the above yaml code.
+##
+##      Port Forwarding can't be done while creating multiple pods using a ReplicationController
+## or ReplicaSet, as only a single pod can be heard on any given unique host port. If port forwording is 
+## specified, the first created pod only enters READY mode. The pods created after creation of this pod
+## won't stays back in NOT READY status, as the port is already occupied by the first pod.
+## For more INFO: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+##
+###################################################################################################################
 ###################################################################################################################
