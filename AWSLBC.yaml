@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: awscontroller
+  annotations:
+    #service.beta.kubernetes.io./aws-load-balancer-type: "external"
+    service.beta.kubernetes.io./aws-load-balancer-nlb-target-type: "ip"
+    service.beta.kubernetes.io./aws-load-balancer-scheme: "internet-facing"
+spec:
+  selector:
+    app: food
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+
+##################################################################################################################
+##################################################################################################################
+###
+###       AWS Load Balancer Controller creates a Network Load Balancer in AWS as per the provided configuration.
+###       Annotations are similar to labels or tags which has the additional functionality of being able  to
+### control the behaviour of the services.
+###
+###       Under ports, port describes the port on which service should listen, whereas targetPort parameter 
+### describes the port number of the pod (target), on which it should listen.
+###
+###
+###
+##################################################################################################################
+##################################################################################################################
