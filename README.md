@@ -7,6 +7,6 @@
 4.  Replica Set. --> rsfood.yaml
 5.  Deployment. --> deploy.yaml
 6.  Services
-       # clusterIP.yaml
-       # nodePort.yaml
-       # AWS_Loadbalancer_Controller 
+       * clusterIP.yaml
+       * nodePort.yaml
+       * AWS_Loadbalancer_Controller 
