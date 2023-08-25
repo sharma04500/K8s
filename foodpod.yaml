@@ -19,7 +19,15 @@ spec:
     - containerPort: 80
       hostPort: 8000
 
-#      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
-# as a root user, in order to clone the repo 'food' into the root directory to make the source code
-# available in the hostPath as specified in the above yaml code.
- 
+#################################################################################################################
+#################################################################################################################
+##
+##      Before executing this script, execute "git clone https://github.com/sharma04500/food.git"
+## as a root user, in order to clone the repo 'food' into the root directory to make the source code
+## available in the hostPath as specified in the above yaml code.
+## 
+##
+##      Reference : https://kubernetes.io/docs/concepts/workloads/pods/#what-is-a-pod
+##
+#################################################################################################################
+#################################################################################################################
