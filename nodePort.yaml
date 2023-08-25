@@ -16,11 +16,14 @@ spec:
 ###########################################################################################################
 ##
 ##      We can't use any desired port on the node. We should pick a value from the range 30000-32767. It is 
-## the default behaviour of the nodePort service. 
+## the default behaviour of the nodePort type service. 
 ##      Though nodeport facilitates us to access the k8S cluster directly from the internet, There are certain
 ## drawbcks which limits from using this option.
-##      If we opt for changing the port on certain requirements, we should manually intervene and modify the
-## entities like Security groups in AWS for provisioning access through the newly configured ports.
+##      If we skip writing the nodePort parameter under the ports section, the port allocation on the node will be
+## dynamic i.e., the service itself picks a random number from its default range. This requires manual intervention
+## to allow the external traffic from the newly assigned port. 
+##      If we intentionally opt for changing the port on certain requirements, we should manually intervene and 
+## modify the entities like Security groups in AWS for provisioning access through the newly configured ports.
 ##      In such cases, if we didn't close the connectvity of the old port, unnecessarily opening a port 
 ## for external traffic becomes a security violation.
 ##
