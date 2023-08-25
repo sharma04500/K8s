@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ipcluster
+  name: nodeport
 spec:
   selector:
-    app: food
+    app: nginx
   ports:
   - protocol: TCP
     port: 80  # Port of the Service i.e., NodePort service, which is being handled by KubeProxy.
@@ -12,3 +12,19 @@ spec:
     nodePort: 31999   # Port of the node, on which pod is deployed. This should be opened in Security Group for public access.
   type: NodePort   # Mention the type of service.
   
+###########################################################################################################
+###########################################################################################################
+##
+##      We can't use any desired port on the node. We should pick a value from the range 30000-32767. It is 
+## the default behaviour of the nodePort service. 
+##      Though nodeport facilitates us to access the k8S cluster directly from the internet, There are certain
+## drawbcks which limits from using this option.
+##      If we opt for changing the port on certain requirements, we should manually intervene and modify the
+## entities like Security groups in AWS for provisioning access through the newly configured ports.
+##      In such cases, if we didn't close the connectvity of the old port, unnecessarily opening a port 
+## for external traffic becomes a security violation.
+##
+## Reference: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+##
+############################################################################################################
+############################################################################################################
