@@ -11,3 +11,30 @@ spec:
     targetPort: 80
   type: ClusterIP
   
+###################################################################################################################
+###################################################################################################################
+###
+###     Cluster IP type service can be used only for internal communication with in the cluster i., the name  
+### resolution for cluster IP happens only within the cluster. We can't access the resources or service outside 
+### the cluster, using this IP. Cluster IP best suits to satisfy the need of using a proper pod IP to configure 
+### multiple services lying on the same instance.
+###
+###     Services identify the pods using the labels assigned to them. For example, a service with the selector, 
+### app: food, identifies all the pods with the label app: food, irrespective of the method we used to create 
+### pod and takes control over the pod i.e., distributes the request to that pod as well.
+###     A k8s service called coreDNS, a pod running inside the cluster facilitates the DNS allocation to various 
+### services being used within the network and inside a k8s cluster.  CoreDNS is created and managed by Calico.
+###
+###     We can also verify the cluster Ip through nslookup command inside the cluster by creating an aphimeral 
+### dummy pod, which gets auto-deleted after logging out by executing the following command:
+### kubectl run test-pod --image=dubareddy/utils --rm -it -- bash 
+### After creation of the pod, run nslookup <service_name or IP or DNS>
+###
+### By default, DNS name for any object will be created in the format: <service_name>.<namespace>.svc.cluster.local
+###
+###     Instead, NodePort type service allows the external access to the service with its own limitations.
+###
+###     For More INFO: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+###
+########################################################################################################################
+########################################################################################################################
