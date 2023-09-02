@@ -3,22 +3,27 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    app: nginx
+    app: food
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx 
+      app: food
   template:
     metadata:
       labels:
         app: nginx
     spec:
-      containers:
+      volumes:
       - name: webapp
-        image: nginx:1.19.0
-        command: ["/bin/bash", "-c", "nginx -g 'daemon off;' && while true;do date > /usr/share/nginx/html/index.html; sleep 5; done"]
-
+        hostPath:
+          path: /root/food
+      containers:
+      - name: food
+        image: ubuntu/apache2
+        volumeMounts:
+        - name: webapp
+          mountPath: /var/www/html
 
 ########################################################################################################################################
 ########################################################################################################################################
