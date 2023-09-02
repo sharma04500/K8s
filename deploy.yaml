@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        app: food
     spec:
       volumes:
       - name: webapp
