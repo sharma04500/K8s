@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: 
+              service:
+                name: test
+                port:
+                  number: 80
+
+
+
+##########################################################################################################
+#########################################################################################################
+###
+###     In an AWS eks cluster, in order to create an Application Load Balancer, we should create an
+### ingress with the above declared annotations.
+###
+###     In order to create an ALB or ingress, we should have an internal service [clusterIP - preferred].
+### ALB routes the incomming traffic to this clusterIP type service, which in turn reflects the traffic to
+### the pods which are identified by this clusterIP.
+###
+###     In the above file name under the section service of backend refers to the name of the service(clusterIP).
+###
+##########################################################################################################
+###########################################################################################################

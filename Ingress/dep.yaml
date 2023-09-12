@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: food
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: food
+  template:
+    metadata:
+      labels:
+        app: food
+    spec:
+      volumes:
+        - name: webapp
+          hostPath:
+            path: /root/food
+      containers:
+        - name: food
+          image: ubuntu/apache2
+          volumeMounts:
+            - name: webapp
+              mountPath: /var/www/html

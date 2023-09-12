@@ -21,14 +21,18 @@ spec:
 ##################################################################################################################
 ##################################################################################################################
 ###
-###       AWS Load Balancer Controller creates a Network Load Balancer in AWS as per the provided configuration.
+###       An AWS add-on called, AWS Load Balancer Controller provisions a Network Load Balancer when a LoadBalancer
+### type service is created using the above mentioned annotations.
+###
 ###       Annotations are similar to labels or tags which has the additional functionality of being able  to
 ### control the behaviour of the services.
 ###
 ###       Under ports, port describes the port on which service should listen, whereas targetPort parameter 
 ### describes the port number of the pod (target), on which it should listen.
 ###
-###
+###       In the backend, we should create a role for AWS LoadBalancerController for cluster to authenticate to 
+### AWS for provisioning Loadbalancers. We should also have an internal service account within the cluster to 
+### allow the Load Balancer Controller to access the services within the cluster.
 ###
 ##################################################################################################################
 ##################################################################################################################
