@@ -1,12 +1,2 @@
 # K8s
-## This repository contain the files written while practising K8s.
-
-1.  Installation and Bootstrapping the K8s. --> kubeadm.sh
-2.  Pod. --> foodpod.yaml
-3.  Replication Controller. --> foodrc.yaml
-4.  Replica Set. --> rsfood.yaml
-5.  Deployment. --> deploy.yaml
-6.  Services
-       1. clusterIP.yaml
-       2. nodePort.yaml
-       3. AWS_Loadbalancer_Controller 
+## This repository contains the files written while practising K8s.
