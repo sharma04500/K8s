@@ -32,5 +32,9 @@ spec:
 ###
 ###     In the above file name under the section service of backend refers to the name of the service(clusterIP).
 ###
+###   Reference:  https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.5/guide/ingress/spec/
+###
+###               https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
+###
 ##########################################################################################################
 ###########################################################################################################
