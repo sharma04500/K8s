@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: trail
+  labels:
+    requirement: testing
+spec:
+  volumes:
+    - name: food
+      hostPath:
+        path: /root/food
+  containers:
+    - name: food
+      image: ubuntu/apache2
+      volumeMounts:
+      - name: food
+        mountPath: /var/www/html
+      ports:
+      - containerPort: 80
+        hostPort: 8000
+
+
+
+
+
+
+
+
+
+
+##########################################################################################
+###########################################################################################
+###   Hostpath is a storage type in k8s, usually used to specify a directory within the node
+### on which the pod is getting deployed.
+###   If this type of storage plugin is being used in the real time scenario, where the pod is 
+### getting deployed to serve the purpose of auto healing, in order to maintain the integrity 
+### of the CI/CD, then the administrator should make sure that the data is available on all the 
+### nodes.
+###   In cases, this can be achieved through provisioning the user data in MIME format which
+### creating the cluster and node group.
+###   Though this is a solution, hostPath is not recommended for using in real time environments.
+###
+### For more INFO: https://kubernetes.io/docs/concepts/storage/volumes/#hostpath
+################################################################################################
+################################################################################################

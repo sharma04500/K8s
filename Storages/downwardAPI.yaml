@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod # Name of our pod
+spec:
+  volumes:
+  - name: shared-date-logs  # Creating a shared volume for my containers "container-writing-dates" and "container-serving-dates"
+    emptyDir: {}            # On node where POD was assigned, this directory will be used for shared volume /var/lib/kubelet/<pod-uid>/volumes
+  containers:
+  - name: container-writing-dates # Name of first container
+    image: alpine # Image to use for first container
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date >> /var/log/index.html; sleep 10;done"] # writing date command output to index.html file for every 10sec
+    volumeMounts:
+    - name: shared-date-logs
+      mountPath: /var/log # Mounting log dir so app can write to it.
+  - name: container-serving-dates # Name of second container
+    image: nginx:1.19.0 # Image for second container
+    ports:
+      - containerPort: 80 # Defining what port to use.
+        hostPort: 8080
+    volumeMounts:
+    - name: shared-date-logs
+      mountPath: /usr/share/nginx/html # Where nginx will serve the written file
+
+
+#######################################################################################################################
+########################################################################################################################
+###
+###   DownwardAPI is a storage plugin of the kubernetes, which provisions the user to expose the live data of a 
+### running container in plain text read only file format.
+###   In the above specified code written by github.com/devopsyuva two containers will be launched on applying this yaml,
+### where a container will be appending the output of the date command to the index.html file of /var/log directory while,
+### another nginx container captures this data and serves it to the external world in a plain text read only format via
+### 8080 port of the node, on which the pod is running.
+###    In the above context, the data is being written to an emptydir created by this yaml itself. As containers within
+### the same pod shares the network and storage, the second container is able to capture the data from this directory.
+###    In simple words, the directory {volume} was created by the emptyDir type volume and this volume is mounted to both the
+### containers in two different paths i.e., the path to which the first container is appending the `date` value in loop
+### as well as to the path of the second container, from where nginx is serving the web data through capturing the file 
+### named "index.html" 
+###
+### For more INFO: https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi
+#####################################################################################################################
+#####################################################################################################################
