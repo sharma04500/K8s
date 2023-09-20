@@ -1,0 +1,38 @@
+apiVersion:
+kind:
+metadata:
+  name: firstpv
+spec:
+  storageClassName: local-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany 
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/bcp"
+
+
+############################################################################################################################
+#############################################################################################################################
+###
+###     Persistent Volume concept provisions the solution for making our ephimeral pod's data persistent. Any 
+### Persistent volume can be claimed by only one pvc and multiple pvc's for a single pv isn't supported. PV 
+### is created in the cluster level whereas a pvc is the claim for PV, which is created in a namespace level.
+###     PVs created by the admistrator are called static PV's while those which are created by the system are 
+### known as dynamic PVs. In general, Pv's are created by the administrators while PVCs are created by the developers.
+###     Above mentioned yaml manifest creates a local volume on recieving its first claim in the specified hostpath.
+### Local volumes are the volumes which are directly attached to the node, on which the pod is scheduled to launch.
+### Persistence of data in such local volumes is subjected to the node affinity, availability and data durability. The major 
+### advantage of using local volumes is presence of both volume and pod on same node, reduces the latency incredibly.
+###     The Access Modes that can be used to create PVs are ReadWriteOnce (RWO), ReadWriteMany (RWX), ReadOnlyMany (ROX) and 
+### ReadWriteOncePod (RWO-P).
+###     The Reclaim policies that can be used are Retain, Recycle and Delete.
+###     The type of storage being provisioned to a PVC is determined by the storage class. The decision of selecting the 
+### storageclass influences many factors like data availability, durability, performance and reliability kind of things. 
+###
+### For more INFO: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+###
+### Storage Classes: https://kubernetes.io/docs/concepts/storage/storage-classes/
+##############################################################################################################################
+#################################################################################################################################

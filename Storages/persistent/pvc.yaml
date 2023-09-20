@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: binladen
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2048Mi
+
+
+###########################################################################################################################
+###########################################################################################################################
+###
+###     Persistent Volume Claim is a request to provision the Persistent Volume for usage by the pods within a particular 
+### namespace. yaml manifest requesting for a pvc contains the storageclass, access mode and the requrired storage in KiB 
+### or MiB or GiB.
+###     After executing the pvc.yaml manifest K8s will look for a PV with respect to the specified requirements and binds 
+### it to that PV, if available.
+###     Once after binding, we can mount the volume to the desired location on the pod(s) with respect to the requirement
+### as well as the Access mode.
+###     In general, the binding status can be seen as bound, released and available. A PV can be used only when the status
+### is available. If we find a PV with status released and intend to reuse it, we should manually remove the "claimRef"
+### section from the PV config file by accessing it through `kubectl edit persistentvolume/<PV_name>`
+###
+###     In general the reclaim policies can be used are retain, recycle and delete. Retain is considered as the default 
+### option. If the reclaim policy is set to "Recycle", the data inside the PV will automatically be wiped off and the PV 
+### will automatically attain the "available" status, upon deleting the PVC {not recommended}. If the reclaim policy is set 
+### to "Delete", the PV will also be deleted upon deletion of PVC.
+###
+### For more INFO: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims
+###########################################################################################################################
+###########################################################################################################################
