@@ -1,5 +1,5 @@
-apiVersion:
-kind:
+apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: firstpv
 spec:

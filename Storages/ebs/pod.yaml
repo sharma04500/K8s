@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+  labels:
+    app: food
+spec:
+  - containers:
+      name: ddummy
+      image: ubuntu/apache2
+      volumeMounts:
+        - name: ebspvc
+          mountPath: /var/www/html
+      ports:
+        - containerPort: 80
+          hostPort: 1800
+  - volumes:
+      name: ebspvc
+      persistentVolumeClaim: 
+      claimName: ebspvc
