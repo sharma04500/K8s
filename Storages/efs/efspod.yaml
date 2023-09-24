@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: trailpod
+  labels:
+    app: dates
+spec:
+ volumes:
+    - name: pvtrail
+      persistentVolumeClaim: 
+        claimName: efs-pvc
+ containers:
+    - name: dates
+      image: nginx:latest
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo $(date) >> /var/www/html/index.html; sleep 3; done"]
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: pvtrail
+          mountPath: /usr/share/nginx/html
