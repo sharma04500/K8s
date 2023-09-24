@@ -9,3 +9,26 @@ spec:
   resources:
     requests:
       storage: 8Gi
+
+
+##########################################################################################################################
+##########################################################################################################################
+###
+###       While creating a PVC for ebs volume, we can choose "ReadWriteOnce" only as an access mode, because the basic 
+### functionality of ebs volumes in AWS are compatiable to mount only on a single node. 
+###       To create a PVC for ebs volume, we should make sure that, the required storage size parameter is more than 4 GB 
+### (>4GB), as the minimum size of an EBS volume should be 4 GB in order to get it provisioned from AWS. without a disk 
+### provisioned, the process to claim the storage fails with error.
+###       For creating a PV claim for ebs, we should make sure that the cluster and it's components have proper aceess 
+### to our AWS account, in order to create resources for fullfillment of our requirements.
+###       As k8s offloads the task of authentication and authorization to the Identity Provider, we should create an OIDC
+### provider, for providing the accessibility to the cluster to fetch the authentication and authorization information 
+### from the IAM of AWS in order to enable the cluster to validate the service account for permitting the roles or users to 
+### access or create or modify or delete or to perform any other actions over various resources within the cluster.
+###       After executing pvc.yaml witin the cluster, pvc.yaml --> service account --> oIDC --> IAM --> role (bound to the sa) 
+### --> policy (if had enough permissions) --> ebs csi driver --> provisioning of an ebs volume      
+###
+###       For more INFO: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
+###
+###############################################################################################################################
+################################################################################################################################
