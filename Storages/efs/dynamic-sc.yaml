@@ -9,3 +9,4 @@ parameters:
   directoryPerms: "700"
 
   ### Use this yaml while creating the storage class, provisioning the storage to pvc is the desired functionality.
+  ### For more INFO: https://github.com/kubernetes-sigs/aws-efs-csi-driver/tree/master/examples/kubernetes
