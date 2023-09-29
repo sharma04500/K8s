@@ -11,7 +11,7 @@ spec:
       image: jenkins/jenkins:lts
       ports:
       - containerPort: 8080
-      - containerPort: 52000
+      - containerPort: 31999
 
 ---
 apiVersion: v1
@@ -39,14 +39,20 @@ spec:
     to: agent
   ports:
   - protocol: TCP
-    port: 52000
-    targetPort: 52000
+    port: 31999
+    targetPort: 31999
     nodePort: 31999
 
-#############################################################################
-##############################################################################
-###   while using labels for enabling the pod to be identified by two objects,
+#################################################################################
+#################################################################################
+###       while writing labels for enabling the pod to be identified by two objects,
 ### both the values being used in key and value fields of both the labels must
 ### be unique.
-################################################################################
-#################################################################################
+###       Before attempting to connect from the agent to the jenkins master, do open
+### the port 31999 in the security group from anywhere and also make sure that
+### the default TCP value for jenkins agent under the Manage Jenkins > Security 
+### is set to 31999, or else the downloaded agent.jar file will by default attempt
+### to establish the connection to master via 50000 by default and the request gets
+### failed as the port 50000 will not be accessible either at pod or node level. 
+#######################################################################################
+#######################################################################################
